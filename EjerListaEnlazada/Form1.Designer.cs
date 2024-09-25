@@ -54,6 +54,8 @@
             this.txtParticipaciones = new System.Windows.Forms.TextBox();
             this.txtGanadas = new System.Windows.Forms.TextBox();
             this.btnInsertar = new System.Windows.Forms.Button();
+            this.btnBusca = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grGanadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grCorredores)).BeginInit();
             this.SuspendLayout();
@@ -291,11 +293,33 @@
             this.btnInsertar.UseVisualStyleBackColor = true;
             this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
+            // btnBusca
+            // 
+            this.btnBusca.Location = new System.Drawing.Point(479, 238);
+            this.btnBusca.Name = "btnBusca";
+            this.btnBusca.Size = new System.Drawing.Size(94, 39);
+            this.btnBusca.TabIndex = 27;
+            this.btnBusca.Text = "Buscar";
+            this.btnBusca.UseVisualStyleBackColor = true;
+            this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(359, 112);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 39);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Eliminar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 546);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBusca);
             this.Controls.Add(this.btnInsertar);
             this.Controls.Add(this.txtGanadas);
             this.Controls.Add(this.txtParticipaciones);
@@ -351,6 +375,8 @@
         private System.Windows.Forms.TextBox txtParticipaciones;
         private System.Windows.Forms.TextBox txtGanadas;
         private System.Windows.Forms.Button btnInsertar;
+        private System.Windows.Forms.Button btnBusca;
+        private System.Windows.Forms.Button button1;
     }
 }
 

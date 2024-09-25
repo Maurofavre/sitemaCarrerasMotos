@@ -20,6 +20,7 @@ namespace EjerListaEnlazada
             InitializeComponent();
         }
 
+        //INSERTAR CON VERIFICADOR DE DUPLICIDAD
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             //primero crear la lista arriba con el nombre de nodo {PRIMERO , SIGUIENTE}
@@ -33,6 +34,16 @@ namespace EjerListaEnlazada
             competidor.Carreras = int.Parse(txtParticipaciones.Text);
             competidor.Ganadas =int.Parse(txtGanadas.Text);
 
+
+
+            // Verificar si el competidor con el mismo NroCorredor ya existe
+            if (Competidores.Buscar(competidor.NroCorredor) != null)
+            {
+                MessageBox.Show("El competidor con el número " + competidor.NroCorredor + " ya existe.", "Error de duplicado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Si ya existe, no lo insertamos
+            }
+
+
             // agregar el nodo a la lista
             Competidores.Insertar(competidor);
 
@@ -44,10 +55,16 @@ namespace EjerListaEnlazada
             // refrescar la grilla con los datos de los movimientos
             
         }
+
+       
+        //MOSTRAR TODOS
         private void btnListar_Click(object sender, EventArgs e)
         {
             MostrarCompetidores();
         }
+
+
+        //MOSTAR A TODOS
         private void MostrarCompetidores()
         {
             List<Nodo> competidor = Competidores.Listar(); // obtener la lista de movimientos
@@ -62,7 +79,7 @@ namespace EjerListaEnlazada
         }
 
 
-        //Listar ganadores
+        //LISTAR A TODOS LOS GANADORES EN EL GRID EN EL GRID
         public List<Nodo> ListarGanadores()
         {
 
@@ -79,11 +96,15 @@ namespace EjerListaEnlazada
             return ganadores;
         }
 
+
+        //lISTAR GANADORES
         private void btnListarGanadores_Click(object sender, EventArgs e)
         {
             ListarGanadores();
         }
 
+
+        //BOTON CONSULTAR 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             List<Nodo> cantidadCompe = Competidores.Listar();
@@ -96,6 +117,52 @@ namespace EjerListaEnlazada
             }
 
             txtTotal.Text = aux.ToString();  // Mostramos el total en el TextBox
+
+        }
+
+
+        //BOTON BUSCAR
+        private void btnBusca_Click(object sender, EventArgs e)
+        {
+
+            //guardamos el valor a buscar
+            int nroCompe = int.Parse(txtNumero.Text);
+
+            // Usamos el método Buscar de la lista enlazada
+            Nodo nodoEncontrado = Competidores.Buscar(nroCompe);
+
+            // Verificamos si el nodo fue encontrado
+            if (nodoEncontrado != null)
+            {
+                // Si se encuentra, mostramos la información del nodo
+                //MessageBox.Show($"Cuenta encontrada: {nodoEncontrado.Cuenta}\n" );
+
+                MessageBox.Show($"Corredor numero : {nodoEncontrado.NroCorredor}\n" +
+                                $"Carreras ganadas: {nodoEncontrado.Ganadas}\n");
+            }
+            else
+            {
+                // Si no se encuentra, mostramos un mensaje de error
+                MessageBox.Show("No se encontró ninguna cuenta con el número ingresado.");
+            }
+        }
+      
+        
+        //BOTON ELIMINAR
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int nroCorredor = int.Parse(txtNumero.Text);
+
+
+            Nodo compeEliminar = Competidores.Eliminar(nroCorredor);
+
+            if (compeEliminar != null)
+            {
+                MessageBox.Show("Eliminado");
+
+            }
+
+            MostrarCompetidores();
 
         }
     }

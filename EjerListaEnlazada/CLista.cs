@@ -32,11 +32,12 @@ namespace Recup2_ED_CS
             }
         }
 
-        // el INSERTAR mantiene ordenada la lista por el campo "Numero" de menor a mayor
+
+        // INSERTAR 
         public void Insertar(Nodo nuevo)
         {
+           
 
-            
             if (Primero != null && Ultimo != null) // si los aputadores NO son nulos
             {
                 // el nodo nuevo se enlaza según el crterio de orden establecido para la lista
@@ -79,7 +80,7 @@ namespace Recup2_ED_CS
             }
         }
 
-
+        //LISTAR A TODOS 
         public List<Nodo> Listar()
         {
             List<Nodo> competidores = new List<Nodo>();
@@ -95,7 +96,7 @@ namespace Recup2_ED_CS
             return competidores;
         }
 
-        // Método para listar ganadores según las condiciones: más de 2 carreras ganadas y 5 o más participaciones
+        // LISTAR LOS GANADORES CON LA CONDICION DE TENER 2 GANADAS
         public List<Nodo> ListarGanadores()
         {
             List<Nodo> ganadores = new List<Nodo>(); // Lista para almacenar los ganadores
@@ -115,13 +116,68 @@ namespace Recup2_ED_CS
             return ganadores; // Devuelve la lista de ganadores
         }
 
-
-
-        public Nodo Buscar(int nro)
+   
+        //Buscar en los nodos
+        public Nodo Buscar(int nroCompe)
         {
-            Nodo nodo = null;
+            Nodo auxiliar = Primero; // Creamos un nodo auxiliar para recorrer la lista
 
-            return nodo;
+            // Recorremos toda la lista  Este ciclo while continúa ejecutándose mientras el nodo actual (representado por auxiliar) no sea null.
+            while (auxiliar != null)
+            {
+                if (auxiliar.NroCorredor == nroCompe) // Si encontramos la cuenta buscada
+                {
+                              
+                    return auxiliar; // Devolvemos el nodo encontrado  
+                }
+
+                auxiliar = auxiliar.Siguiente; // Avanzamos al siguiente nodo, pregunta si no es null y sigue igual
+            }
+
+            // Si no encontramos el nodo, retornamos null
+            return null;
+        }
+
+
+        public Nodo Eliminar(int nroCorredor)
+        {
+            Nodo anterior = null; //Crea un puntero anterior que inicialmente es null, ya que no hay un nodo antes del primer nodo.
+            Nodo auxiliar = Primero; //
+
+            // Recorremos la lista hasta encontrar el nodo que queremos eliminar
+            while (auxiliar != null)
+            {
+                if (auxiliar.NroCorredor == nroCorredor) // Si encontramos la cuenta buscada
+                {
+                    if (anterior == null) // Si el anterior al encontrado es null (osea que seria el primero )
+                    {
+                        Primero = auxiliar.Siguiente; //Primero seria auxiliar que tmb es primero, pero apuntando al siguiente que seria 2, por ende no hay mas 1 
+                    }
+                    else
+                    {
+                        anterior.Siguiente = auxiliar.Siguiente; // Saltamos el nodo que queremos eliminar
+                    }
+
+                    // Si el nodo eliminado es el último nodo, actualizamos el puntero Ultimo
+                    if (auxiliar == Ultimo)
+                    {
+                        Ultimo = anterior; //Hace que el ultimo pase a ser el anterior nodo 
+                    }
+
+                    return auxiliar; // Devolvemos el nodo encontrado y eliminado
+                }
+
+                anterior = auxiliar; // se actualiza anterior para que apunte al nodo actual.
+                auxiliar = auxiliar.Siguiente; // Se mueve el puntero auxiliar al siguiente nodo en la lista
+            }
+
+            // Si no encontramos el nodo, retornamos null
+            return null;
         }
     }
+
+
+
+   
+
 }
