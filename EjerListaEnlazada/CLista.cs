@@ -41,8 +41,6 @@ namespace Recup2_ED_CS
             if (Primero != null && Ultimo != null) // si los aputadores NO son nulos
             {
                 // el nodo nuevo se enlaza según el crterio de orden establecido para la lista
-
-
                 // caso 1: el nodo nuevo es menor al primero de la lista
                 if (nuevo.NroCorredor < Primero.NroCorredor) // el orden está dado por el numero de corredor
                 {
@@ -55,15 +53,12 @@ namespace Recup2_ED_CS
                     Ultimo.Siguiente = nuevo; // el nuevo pasa a ser el ultimo
                     Ultimo = nuevo;
                 }
-
-
                 // caso 3: el nuevo es mayor que el primero y menor al ultimo
                 if (nuevo.NroCorredor > Primero.NroCorredor && nuevo.NroCorredor < Ultimo.NroCorredor)
                 {
                     // hay que recorrer los nodos con 2 auxiliares, desde el primero
                     Nodo anterior = null;
                     Nodo auxiliar = Primero;
-
                     //mientras el número de corredor del nodo nuevo (nuevo.NroCorredor) sea mayor que el número de corredor del nodo actual (auxiliar.NroCorredor)
                     while (nuevo.NroCorredor > auxiliar.NroCorredor)
                     {
@@ -84,16 +79,14 @@ namespace Recup2_ED_CS
         public List<Nodo> Listar()
         {
             List<Nodo> competidores = new List<Nodo>();
-
-            //este codigo es igual , sirve para recorrer el nodo e ir listando 
+                //este codigo es igual , sirve para recorrer el nodo e ir listando 
             Nodo auxiliar = Primero; // se recorre desde el primero
             while (auxiliar != null)
             {
                 competidores.Add(auxiliar); // guardar el nodo en la lista
                 auxiliar = auxiliar.Siguiente; // avanza al siguiente
             }
-
-            return competidores;
+                return competidores;
         }
 
         // LISTAR LOS GANADORES CON LA CONDICION DE TENER 2 GANADAS
@@ -175,9 +168,5 @@ namespace Recup2_ED_CS
             return null;
         }
     }
-
-
-
-   
 
 }
