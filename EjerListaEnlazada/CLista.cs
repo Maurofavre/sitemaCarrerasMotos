@@ -167,6 +167,21 @@ namespace Recup2_ED_CS
             // Si no encontramos el nodo, retornamos null
             return null;
         }
-    }
+         
+        
+        private void btnSumar_Click(object sender, EventArgs e)
+         {
+             List<Nodo> cantidadCompe = Competidores.Listar();
+             int carrerasGanadas = 0; // Inicializamos el contador en 0
+        
+             foreach (Nodo nodo in cantidadCompe)
+             {
+                 carrerasGanadas += nodo.Carreras; // Sumamos las carreras ganadas de cada nodo
+             }
+        
+             txtTotal.Text = carrerasGanadas.ToString(); // Mostramos el total en el TextBox
+        
+         }
+     }
 
 }
